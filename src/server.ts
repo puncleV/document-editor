@@ -33,7 +33,7 @@ io.use(async (ctx, next) => {
 // @ts-ignore
 io.on(DOCUMENT_EVENTS.OPEN, LiveDocument.open);
 io.on(DOCUMENT_EVENTS.CLOSE, LiveDocument.close);
-io.on(DOCUMENT_EVENTS.DOCUMENT_UPDATE, LiveDocument.update);
+io.on(DOCUMENT_EVENTS.DOCUMENT_BODY_UPDATE, LiveDocument.update);
 
 app.use(injectDependencies);
 app.use(async (ctx, next) => {

@@ -38,7 +38,7 @@ export class LiveDocument {
       body: data.body,
     });
 
-    ctx.io.broadcast(DOCUMENT_EVENTS.DOCUMENT_UPDATE, {
+    ctx.io.broadcast(DOCUMENT_EVENTS.DOCUMENT_BODY_UPDATE, {
       body: data.body,
     });
   }
