@@ -32,4 +32,14 @@ export class LiveDocument {
       user,
     });
   }
+
+  static async update(ctx: any, data: any) {
+    await ctx.documentRepository.update(data.documentId, {
+      body: data.body,
+    });
+
+    ctx.io.broadcast(DOCUMENT_EVENTS.DOCUMENT_UPDATE, {
+      body: data.body,
+    });
+  }
 }

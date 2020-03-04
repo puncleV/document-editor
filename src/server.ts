@@ -5,6 +5,7 @@ import {injectDependencies} from "./middlewares/inject-dependencies";
 // @ts-ignore
 import Socket from "koa-socket-2";
 import {LiveDocument} from "./service/live-document";
+import {DOCUMENT_EVENTS} from "./constants";
 
 const app = new Koa();
 const io = new Socket();
@@ -30,10 +31,16 @@ io.use(async (ctx, next) => {
 });
 
 // @ts-ignore
-io.on("open", LiveDocument.open);
-io.on("close", LiveDocument.close);
+io.on(DOCUMENT_EVENTS.OPEN, LiveDocument.open);
+io.on(DOCUMENT_EVENTS.CLOSE, LiveDocument.close);
+io.on(DOCUMENT_EVENTS.DOCUMENT_UPDATE, LiveDocument.update);
 
 app.use(injectDependencies);
+app.use(async (ctx, next) => {
+  ctx.io = io;
+
+  await next();
+});
 app.use(helloRouter.routes());
 app.use(helloRouter.allowedMethods());
 
