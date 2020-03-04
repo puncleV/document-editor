@@ -48,7 +48,8 @@
   "husky": {
     "hooks": {
       "post-checkout": "npm i",
-      "post-merge": "npm i"
+      "post-merge": "npm i",
+      "pre-commit": "lint-staged"
     }
   }
 }
