@@ -1,0 +1,54 @@
+{
+  "name": "document-editor",
+  "version": "1.0.0",
+  "description": "Sample document editor",
+  "main": "build/app.js",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "start": "node build/app.js",
+    "start:watch": "nodemon",
+    "lint": "tslint -c tslint.json -p tsconfig.json -t codeFrame '{src,test}/**/*.ts'"
+  },
+  "keywords": [
+    "Typescript",
+    "node",
+    "ts"
+  ],
+  "author": "Kozlov Viktor",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/koa": "2.11.2",
+    "@types/koa-bodyparser": "4.3.0",
+    "@types/koa-router": "7.4.0",
+    "@types/node": "13.7.1",
+    "husky": "4.2.2",
+    "lint-staged": "10.0.7",
+    "nodemon": "2.0.2",
+    "prettier": "1.19.1",
+    "ts-jest": "25.2.0",
+    "ts-node": "8.6.2",
+    "tslint": "6.0.0",
+    "tslint-config-prettier": "1.18.0",
+    "typescript": "3.7.5",
+    "typescript-tslint-plugin": "0.5.5"
+  },
+  "dependencies": {
+    "koa": "2.11.0",
+    "koa-bodyparser": "4.2.1",
+    "koa-router": "8.0.8",
+    "source-map-support": "0.5.16"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --config .prettierrc --write",
+      "tslint -c tslint.json --fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "post-checkout": "npm i",
+      "post-merge": "npm i"
+    }
+  }
+}
