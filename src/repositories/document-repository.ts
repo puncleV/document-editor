@@ -22,7 +22,11 @@ export class DocumentRepository {
   // todo add validation (mongoose, or joi lib)
   async create(document: Omit<IDocument, "body">) {
     // todo this is probably adapter thing but it's not that important for now
-    const {insertedId} = await this.connection.collection(this.collectionName).insertOne({...document, body: ""});
+    const {insertedId} = await this.connection.collection(this.collectionName).insertOne({
+      ...document,
+      body: "",
+      usersWatching: [],
+    });
 
     return {
       id: insertedId,
