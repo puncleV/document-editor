@@ -1,18 +1,19 @@
 import {config} from "../config";
 import {MongoClient, Db} from "mongodb";
+import {IDatabaseAdapter} from "./types";
 
 export interface IMongodbAdapterDependencies {
   db: Db;
 }
 
-export class MongodbAdapter {
+export class MongodbAdapter implements IDatabaseAdapter {
   private db: Db;
 
   constructor(dependencies: IMongodbAdapterDependencies) {
     this.db = dependencies.db;
   }
 
-  async create() {
+  static async create(): Promise<MongodbAdapter> {
     return new Promise((resolve, reject) =>
       MongoClient.connect(config.db.url, (err, client) => {
         if (err != null) {
@@ -25,7 +26,7 @@ export class MongodbAdapter {
     );
   }
 
-  getConnection() {
+  public getConnection() {
     return this.db;
   }
 }
