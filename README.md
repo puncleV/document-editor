@@ -1,5 +1,7 @@
 **Document editor**
 
+As far as i remember it was an assignment before interview 
+
 **TODO**
 
 1. database indexes
